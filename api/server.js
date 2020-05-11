@@ -21,6 +21,14 @@ server.get("/accounts", (req,res)=>{
 })
 
 
+server.get("/accounts/:id", (req,res)=>{
+  db.select("*").from('accounts').where({id:req.params.id}).then(accs=>{
+    res.status(200).json(accs)
+  }).catch(err=>{
+    console.log(err)
+    res.status(500).json("Internal Server Error")
+  })
+})
 
 
 
